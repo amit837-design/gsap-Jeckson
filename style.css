@@ -109,9 +109,10 @@ nav button {
   font-size: 100px;
   text-align: center;
   cursor: default;
-  background: var(--skinColor); /* Use the gradient as the background */
-  -webkit-background-clip: text; /* Clip the background to the text */
+  background: var(--skinColor);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  overflow: hidden;
 }
 
 .section1 .details {
