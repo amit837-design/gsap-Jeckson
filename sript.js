@@ -109,13 +109,13 @@ function nameAnimate() {
       piece.classList.add("piece");
 
       const randomX = Math.random() * nameRect.width;
-      const randomY = Math.random() * nameRect.height;
+      const randomY = Math.random() * nameRect.height - 100;
 
       piece.style.position = "absolute";
       piece.style.left = `${nameRect.left + randomX}px`;
       piece.style.top = `${nameRect.top + randomY}px`;
-      piece.style.width = "150px";
-      piece.style.height = "200px";
+      piece.style.width = "100px";
+      piece.style.height = "150px";
       piece.style.backgroundImage = `url(${
         images[Math.floor(Math.random() * images.length)]
       })`;

@@ -112,7 +112,6 @@ nav button {
   background: var(--skinColor);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  overflow: hidden;
 }
 
 .section1 .details {
