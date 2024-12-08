@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GSAP Exploding Button</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #212121;
+      }
+
+      .btn-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .get-gsap-btn {
+        position: relative;
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #00ff85;
+        color: white;
+        border: 2px solid #00ff85;
+        border-radius: 30px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: bold;
+        outline: none;
+        z-index: 10;
+      }
+
+      .piece {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #00ff85;
+        border-radius: 3px;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-wrapper">
+      <button class="get-gsap-btn">Get GSAP</button>
+    </div>
+
+    <script>
+      const button = document.querySelector(".get-gsap-btn");
+      const wrapper = document.querySelector(".btn-wrapper");
+
+      // When hovering over the button, create pieces
+      button.addEventListener("mouseenter", () => {
+        const buttonRect = button.getBoundingClientRect();
+        const piecesCount = 20; // Number of pieces
+
+        // Create pieces dynamically and position them
+        for (let i = 0; i < piecesCount; i++) {
+          const piece = document.createElement("div");
+          piece.classList.add("piece");
+
+          // Randomize initial positions within the button
+          const randomX = Math.random() * buttonRect.width;
+          const randomY = Math.random() * buttonRect.height;
+
+          piece.style.left = `${randomX}px`;
+          piece.style.top = `${randomY}px`;
+
+          wrapper.appendChild(piece);
+
+          // Animate pieces using GSAP
+          gsap.to(piece, {
+            x: (Math.random() - 0.5) * 300, // Random horizontal movement
+            y: (Math.random() - 0.5) * 300, // Random vertical movement
+            rotation: (Math.random() - 0.5) * 360, // Random rotation
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            onComplete: () => {
+              piece.remove(); // Remove the piece after the animation
+            },
+          });
+        }
+      });
+
+      // Reset button style when the mouse leaves
+      button.addEventListener("mouseleave", () => {
+        // If needed, reset or animate the button back into position
+      });
+    </script>
+  </body>
+</html>
